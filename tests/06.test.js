@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { Queue, controlAcces } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 6: controlAcces", function () {
+describe("EJERCICIO 6: controlAcces", function () {
   var queue = new Queue();
 
   queue.enqueue({

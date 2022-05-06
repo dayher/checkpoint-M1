@@ -45,7 +45,17 @@ const {
 
 var objContains = function(obj, prop, value){
     /* Tu codigo aqui */
-
+  let retorno = false;
+  for (const key in obj) {
+    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {  
+      retorno = objContains(obj[key],prop,value);
+      if (retorno) break;
+    }
+    if(key === prop && obj[key] === value){
+      return true
+    }
+  }
+  return retorno;
 }
 
 
@@ -68,7 +78,21 @@ var objContains = function(obj, prop, value){
 // Para números negativos de n debe devolver false
 function secuenciaHenry(array, n) {
   // Tu código aca:
+  if (n<0) return false;
 
+  let retorno = [];
+  for(let i = 0; i< array.length; i++){
+    if(typeof array[i] === 'string'){
+      retorno[i]=array[i].length;
+    } else 
+    retorno[i]=array[i];
+  }
+
+  for(let j = array.length; j<=n ; j++){
+    retorno[j] = (retorno[j-1]+retorno[j-2]+retorno[j-3])*2
+  }
+
+  return retorno[n];
 } 
 
 // ---------------------
@@ -89,7 +113,14 @@ function secuenciaHenry(array, n) {
 
 LinkedList.prototype.size = function(){
     /* Tu codigo aqui */
-
+  if(!this.head) return 0;
+  let count = 0;
+  let current = this.head;
+  while(current){
+    count++
+    current=current.next;
+  }
+  return count;
 }
 
 // EJERCICIO 4
@@ -110,7 +141,34 @@ LinkedList.prototype.size = function(){
 
 LinkedList.prototype.addInPos = function(pos,value){
       /* Tu codigo aqui */
+  
+  let node = new Node(value);
+  let aux;
 
+  if(pos == 0){
+    aux = this.head;
+    this.head = node
+    node.next = aux;
+  } else {
+    let count = pos;
+    let current = this.head;
+    let prev;
+
+    while(current && count){
+      prev=current;
+      current=current.next
+      count--;
+    }
+    if(count>1) return false;
+
+    if(count==1){
+      current.next=node;
+    } else {
+      prev.next = node;
+      node.next = current;
+    }
+  }
+    return true;
 }
 
 // EJERCICIO 5
@@ -120,6 +178,19 @@ LinkedList.prototype.addInPos = function(pos,value){
 // myList.reverseLinkedList()
 // myList = Head --> [4] --> [3] --> [2] --> [1]
 LinkedList.prototype.reverseLinkedList = function () {
+
+  if(!this.head) return null;
+
+  let aux, prev=null, current=this.head;
+
+  while(current){
+    aux=current.next;
+    current.next=prev;
+    prev=current;
+    current=aux;
+  }
+
+  this.head = prev;
   // Tu código aca:
 };
 
@@ -150,7 +221,24 @@ LinkedList.prototype.reverseLinkedList = function () {
 
 var controlAcces = function(queue, event){
   // Tu código aca:
-    
+  let newQueue = new Queue();
+
+  let len = queue.array.length; 
+  let tickets = [];
+  let persona = {};
+
+  for(let i=0 ; i<len ; i++ ){
+
+    persona=queue.dequeue();
+
+    if(persona.age>17 && tickets[persona.ticket.number]===undefined && persona.ticket.event===event){
+      tickets[persona.ticket.number]=true;
+      newQueue.enqueue(persona.fullname);
+    }
+
+  }
+return newQueue.array;
+
 }
 
 

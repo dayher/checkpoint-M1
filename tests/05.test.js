@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { LinkedList } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 5: Reverse LinkedList", function () {
+describe("EJERCICIO 5: Reverse LinkedList", function () {
   var linkedList = new LinkedList();
 
   it("EJERCICIO 5: reverseLinkedList Debe retornar una lista invertida", function () {

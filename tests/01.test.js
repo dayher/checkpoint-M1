@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { objContains } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 1: objContains", function () {
+describe("EJERCICIO 1: objContains", function () {
   const user = {
     id: 6,
     email: "homero@maxpower.com",

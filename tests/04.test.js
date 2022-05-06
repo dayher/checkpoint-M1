@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { LinkedList } = require("../checkpoint.js");
 
-xdescribe("LinkedList", function () {
+describe("LinkedList", function () {
   var linkedList;
 
   beforeEach(function () {

@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { secuenciaHenry } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 2: henryFibonacci", function () {
+describe("EJERCICIO 2: henryFibonacci", function () {
   it('Debería devolver 6 cuando n es 0 y array = ["Franco", 1, "Henry"]', function () {
     expect(secuenciaHenry(["Franco", 1, "Henry"], 0)).to.equal(6);
   });
